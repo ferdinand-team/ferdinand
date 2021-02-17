@@ -1,0 +1,8 @@
+.glass-card {
+    background: rgba($color: #fff, $alpha: 0.2);
+    border: 1px solid rgba($color: #fff, $alpha: 0.2);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+  
+    box-shadow: 0px 4px 16px rgba($color: #fff, $alpha: 0.2);
+  }
