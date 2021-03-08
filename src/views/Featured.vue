@@ -1,5 +1,6 @@
 <template lang="pug">
 .featured-wrapper
+  Loader(v-if="!loadedArticles")
   swiper(:options="swiperOptions" v-if="loadedArticles")
     swiper-slide(v-for="article in featuredArticles" :key="article.id" )
       .preview-card-wrapper
@@ -8,18 +9,18 @@
 </template>
 
 <script>
-import { loremIpsum } from 'lorem-ipsum';
 
 import FeaturedPreview from '@/components/FeaturedPreview.vue';
+import Loader from '@/components/shared/Loader.vue';
 
 export default {
   name: 'Featured',
   components: {
     FeaturedPreview,
+    Loader,
   },
   data() {
     return {
-      featuredArticles: [],
       swiperOptions: {
         slidesPerView: 'auto',
         centeredSlides: true,
@@ -27,14 +28,12 @@ export default {
     };
   },
   mounted() {
-    this.featuredArticles = new Array(4).fill(0).map((e, i) => ({
-      imageSource: 'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-      title: `Sample Article #${i + 1}`,
-      preview: loremIpsum({ count: 1000 }),
-      id: `artprev_${i}`,
-    }));
+    this.$store.dispatch('queryFeaturedArticles');
   },
   computed: {
+    featuredArticles() {
+      return this.$store.getters.featuredArticles;
+    },
     loadedArticles() {
       return this.featuredArticles.length > 0;
     },
