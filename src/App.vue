@@ -65,6 +65,11 @@ body,
     left: 0;
     width: 100%;
     height: 100%;
+    // background: linear-gradient(to top, #4CA1AF, #2C3E50);
+
+    background-color: #b8c6db;
+    background-image: linear-gradient(142deg, #b8c6db 0%, #f5f7fa 74%);
+
   }
 
   #nav {
