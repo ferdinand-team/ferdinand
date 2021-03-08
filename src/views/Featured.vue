@@ -1,15 +1,13 @@
 <template lang="pug">
 .featured-wrapper
-  swiper.carousel(:options="swiperOptions" v-if="loadedArticles")
+  swiper(:options="swiperOptions" v-if="loadedArticles")
     swiper-slide(v-for="article in featuredArticles" :key="article.id" )
       .preview-card-wrapper
         FeaturedPreview(:article="article" @click="openArticle")
-
+    .swiper-pagination(slot="pagination")
 </template>
 
 <script>
-
-import { VueAgile } from 'vue-agile';
 import { loremIpsum } from 'lorem-ipsum';
 
 import FeaturedPreview from '@/components/FeaturedPreview.vue';
@@ -17,17 +15,14 @@ import FeaturedPreview from '@/components/FeaturedPreview.vue';
 export default {
   name: 'Featured',
   components: {
-    VueAgile,
     FeaturedPreview,
   },
   data() {
     return {
       featuredArticles: [],
       swiperOptions: {
-        pagination: {
-          el: '.swiper-pagination',
-        },
-        // Some Swiper option/callback...
+        slidesPerView: 'auto',
+        centeredSlides: true,
       },
     };
   },
@@ -70,15 +65,31 @@ export default {
   flex-direction: column;
 
   .swiper-container {
-    overflow: unset;
+    height: 100%;
+    width: 100vw;
   }
 }
 
-.carousel,
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+
+  margin: 0 4rem;
+}
+
 .slide {
   height: 100%;
-  width: 100%;
+  // width: 100%;
+  margin: 0 2rem;
 }
+
 .preview-card-wrapper {
   height: 100%;
   width: 100%;
