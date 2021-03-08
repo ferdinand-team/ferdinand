@@ -102,10 +102,11 @@ $image-inner-corner-radius: 0px;
     font-size: 1.3rem;
     font-weight: 200;
 
-    margin: 0 1rem 2rem 2rem;
+    margin: 2rem 3rem 4rem 3rem;
     overflow: hidden;
-    text-overflow: -o-ellipsis-lastline;
-
+    hyphens: auto;
+    text-align: justify;
+    // text-overflow: -o-ellipsis-lastline;
   }
 }
 
